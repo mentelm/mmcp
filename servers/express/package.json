@@ -1,7 +1,6 @@
 {
   "name": "@mentelm/mmcp-server-express",
   "version": "0.0.1",
-  "private": true,
   "type": "module",
   "dependencies": {
     "@mentelm/mmcp-server-common": "workspace:*",
@@ -25,6 +24,8 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check-version": "bash ../../scripts/check-version.sh",
+    "publish": "yarn npm publish --access public --staged"
   }
 }

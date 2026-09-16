@@ -1,0 +1,62 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      since:
+        description: Ref/commit to diff against (e.g. master, a tag, or a sha). Empty = last successful deploy.
+        required: false
+        default: ''
+      publish-all:
+        description: Publish every public workspace, ignoring --since.
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: corepack enable
+      - run: yarn install --immutable
+      - run: yarn build
+      - run: yarn test
+      - name: Configure npm publish auth
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn config set 'npmRegistries["//registry.npmjs.org/"].npmAuthToken' "$NODE_AUTH_TOKEN"
+      - name: Resolve publish base
+        id: base
+        if: ${{ ! github.event.inputs.publish-all }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SINCE: ${{ github.event.inputs.since }}
+        run: |
+          if [ -n "$SINCE" ]; then
+            REF="$SINCE"
+          else
+            REF=$(gh run list --workflow deploy.yml --branch master --status success --limit 1 --json headSha -q '.[0].headSha' || true)
+            if [ -z "$REF" ]; then
+              REF=$(git rev-list --max-parents=0 HEAD | tail -1)
+            fi
+          fi
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+      - name: Publish changed public workspaces
+        if: ${{ ! github.event.inputs.publish-all }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: BASE_REF="${{ steps.base.outputs.ref }}" yarn publish
+      - name: Publish all public workspaces
+        if: ${{ github.event.inputs.publish-all }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn publish-all
