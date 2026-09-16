@@ -8,9 +8,11 @@
     "@mentelm/mmcp-slice-model": "workspace:*",
     "@modelcontextprotocol/express": "^2.0.0",
     "@modelcontextprotocol/node": "^2.0.0",
+    "@modelcontextprotocol/server": "^2.0.0",
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@modelcontextprotocol/client": "^2.0.0",
     "@types/express": "^5.0.0",
     "vitest": "^5.0.1"
   },
