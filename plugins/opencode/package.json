@@ -1,0 +1,12 @@
+{
+  "name": "@mentelm/mmcp-plugin-opencode",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.18.31",
+    "@opencode-ai/sdk": "^1.18.31"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "echo 'no tests for opencode plugin yet'"
+  }
+}

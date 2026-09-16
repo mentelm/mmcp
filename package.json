@@ -1,0 +1,19 @@
+{
+  "name": "mmcp",
+  "packageManager": "yarn@4.18.0",
+  "private": true,
+  "workspaces": [
+    "packages/slice-model",
+    "servers/*",
+    "plugins/opencode"
+  ],
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  },
+  "scripts": {
+    "build": "yarn workspaces foreach -A -t run build",
+    "test": "yarn build && yarn workspaces foreach -A run test"
+  }
+}
