@@ -1,6 +1,6 @@
 {
   "name": "@mentelm/mmcp-server-common",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "dependencies": {
     "@mentelm/mmcp-slice-model": "workspace:*",
