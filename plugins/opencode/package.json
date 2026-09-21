@@ -1,6 +1,6 @@
 {
   "name": "@mentelm/mmcp-plugin-opencode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "devDependencies": {
     "@opencode-ai/plugin": "^1.18.31",
     "@opencode-ai/sdk": "^1.18.31"

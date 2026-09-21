@@ -6,7 +6,7 @@ export function mapToServerConfigs(baseUrl: string, sliceNames: string[]): Recor
   sliceNames.forEach((sliceName) => {
     result[sliceName] = ({
       'type': 'remote',
-      url: baseUrl + '/mcp/' + sliceName,
+      url: baseUrl + '/' + sliceName,
       timeout: 2500
     })
   });
