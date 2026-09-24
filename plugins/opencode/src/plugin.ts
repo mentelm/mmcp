@@ -8,10 +8,11 @@ export const plugin: Plugin = async (_: PluginInput, options?: PluginOptions): P
   }
 
   const baseUrl: string = options['url'] as string ?? '';
+  const sliceFetchTimeout: number = options['sliceFetchTimeout'] as number ?? 1500;
 
   return {
     async config(cfg: Config): Promise<void> {
-      const slices: string[] = await fetchMcpSlices(baseUrl);
+      const slices: string[] = await fetchMcpSlices(baseUrl, sliceFetchTimeout);
       cfg.mcp = {
         ...(cfg.mcp ?? {}),
         ...mapToServerConfigs(baseUrl, slices)

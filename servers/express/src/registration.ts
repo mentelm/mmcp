@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import { Slice } from '@mentelm/mmcp-slice-model';
+import { Slice } from '@mentelm/mmcp-server-common';
 import { toNodeHandler } from '@modelcontextprotocol/node';
 import { mapSliceToHandler } from '@mentelm/mmcp-server-common'
 

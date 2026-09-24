@@ -1,4 +1,4 @@
-import { Slice } from '@mentelm/mmcp-slice-model';
+import { Slice } from './slice.js';
 import { createMcpHandler, McpHttpHandler, McpServer } from '@modelcontextprotocol/server';
 
 export function mapSliceToHandler(slice: Slice): McpHttpHandler {

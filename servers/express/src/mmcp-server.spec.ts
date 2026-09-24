@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { mmcpServer } from './mmcp-server.js';
-import { Slice } from '@mentelm/mmcp-slice-model';
+import { Slice } from '@mentelm/mmcp-server-common';
 import { Client, StreamableHTTPClientTransport } from '@modelcontextprotocol/client';
 import type { AddressInfo } from 'net';
 
