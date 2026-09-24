@@ -1,11 +1,14 @@
 {
   "name": "@mentelm/mmcp-server-common",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "dependencies": {
-    "@mentelm/mmcp-slice-model": "workspace:*",
     "@modelcontextprotocol/server": "^2.0.0"
   },
+  "files": [
+    "package.json",
+    "dist"
+  ],
   "main": "./dist/index.js",
   "exports": {
     ".": {

@@ -1,6 +1,6 @@
 import { createMcpExpressApp, CreateMcpExpressAppOptions } from '@modelcontextprotocol/express';
 import { Express } from 'express';
-import { Slice } from '@mentelm/mmcp-slice-model';
+import { Slice } from '@mentelm/mmcp-server-common';
 import registerAllMcpSlices from './registration.js';
 
 export function mmcpServer(slices: Slice[], options?: CreateMcpExpressAppOptions): Express {
