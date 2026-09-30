@@ -1,0 +1,32 @@
+{
+  "name": "@mentelm/mmcp-proxy-slice",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@mentelm/mmcp-server-common": "workspace:^",
+    "@modelcontextprotocol/client": "^2.0.0",
+    "@modelcontextprotocol/server": "^2.0.0"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/node": "^2.0.0",
+    "vitest": "^5.0.1"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "check-version": "bash ../../scripts/check-version.sh",
+    "publish": "yarn npm publish --access public --staged"
+  }
+}
