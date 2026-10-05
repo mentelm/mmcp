@@ -21,4 +21,4 @@ To use, put following in `opencode.json`:
 
 **NOTE:** 
 This plugin is compatible with OpenCode v1.
-Support for v2 will be provided soon via a separate package 
+For OpenCode v2 use the separate package [`@mentelm/mmcp-plugin-opencode2`](../opencode2) - V1 plugin implementations do not run in V2.

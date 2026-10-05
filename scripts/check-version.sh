@@ -8,6 +8,12 @@ fi
 
 PREFIX=$(git rev-parse --show-prefix)
 PREFIX=${PREFIX%/}
+
+if ! git cat-file -e "$BASE_REF:$PREFIX/package.json" 2>/dev/null; then
+  echo "$(pwd): new workspace, no base version to compare against"
+  exit 0
+fi
+
 BASE_VERSION=$(git show "$BASE_REF:$PREFIX/package.json" 2>/dev/null | grep '"version"' | head -1)
 CURRENT_VERSION=$(grep '"version"' package.json | head -1)
 
