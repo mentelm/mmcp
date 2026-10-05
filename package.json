@@ -4,7 +4,8 @@
   "private": true,
   "workspaces": [
     "servers/*",
-    "plugins/opencode"
+    "plugins/opencode",
+    "plugins/opencode2"
   ],
   "devDependencies": {
     "typescript": "^5.9.3",

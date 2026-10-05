@@ -22,5 +22,6 @@ planned - implementations for other backends supported by `@modelcontextprotocol
 ### plugins
 client-side plugins allowing automatic registration of all Slices as MCP servers
 - `opencode` - plugin for OpenCode (v1)
+- `opencode2` - plugin for OpenCode (v2)
 
-planned - plugins/extensions for `GitHub Copilot`, `Claude Code`, `OpenCode (v2)`
+planned - plugins/extensions for `GitHub Copilot`, `Claude Code`

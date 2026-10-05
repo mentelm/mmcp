@@ -1,13 +1,13 @@
 {
-  "name": "@mentelm/mmcp-plugin-opencode",
-  "version": "0.0.6",
+  "name": "@mentelm/mmcp-plugin-opencode2",
+  "version": "0.0.2",
+  "type": "module",
   "devDependencies": {
-    "@opencode-ai/plugin": "^1.18.31",
-    "@opencode-ai/sdk": "^1.18.31"
+    "@opencode/plugin": "^2.0.22"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "echo 'no tests for opencode plugin yet'",
+    "test": "echo 'no tests for opencode2 plugin yet'",
     "check-version": "bash ../../scripts/check-version.sh",
     "publish": "yarn npm publish --access public --staged"
   },
@@ -16,5 +16,8 @@
     "README.md",
     "dist"
   ],
-  "main": "dist/index.js"
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  }
 }
