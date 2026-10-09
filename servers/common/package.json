@@ -1,6 +1,6 @@
 {
   "name": "@mentelm/mmcp-server-common",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "dependencies": {
     "@modelcontextprotocol/server": "^2.0.0"

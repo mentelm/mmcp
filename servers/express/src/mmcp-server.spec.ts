@@ -155,6 +155,54 @@ describe('mmcp-server', () => {
       });
     });
 
+    it('should serve concurrent tool calls to the same slice independently', async () => {
+      const slices: Slice[] = [
+        {
+          name: 'concurrent',
+          tools: [
+            {
+              name: 'first-tool',
+              description: 'Returns the first result',
+              callback: async () => {
+                await new Promise((resolve) => setTimeout(resolve, 50));
+                return { content: [{ type: 'text' as const, text: 'first' }] };
+              },
+            },
+            {
+              name: 'second-tool',
+              description: 'Returns the second result',
+              callback: async () => {
+                await new Promise((resolve) => setTimeout(resolve, 50));
+                return { content: [{ type: 'text' as const, text: 'second' }] };
+              },
+            },
+          ],
+        },
+      ];
+
+      await withServer(slices, async (url) => {
+        const client = new Client(
+          { name: 'concurrent-client', version: '1.0.0' },
+          { capabilities: {} }
+        );
+        const transport = new StreamableHTTPClientTransport(new URL(`${url}/concurrent`));
+
+        try {
+          await client.connect(transport);
+
+          const [first, second] = await Promise.all([
+            client.callTool({ name: 'first-tool' }),
+            client.callTool({ name: 'second-tool' }),
+          ]);
+
+          expect(first).toEqual({ content: [{ type: 'text', text: 'first' }] });
+          expect(second).toEqual({ content: [{ type: 'text', text: 'second' }] });
+        } finally {
+          await client.close();
+        }
+      });
+    });
+
     it('should isolate tools so tools from slice A are not visible to a client connected to slice B', async () => {
       const slices: Slice[] = [
         {
